@@ -37,6 +37,7 @@ a:hover {
     transform: scale(1.05);
 }
 
+/* --- ESTILOS DE HEADER Y NAVBAR V4 (DEFINITIVOS) --- */
 header {
     background-color: rgba(248, 245, 242, 0.85); 
     backdrop-filter: blur(10px);
@@ -44,6 +45,12 @@ header {
     position: sticky;
     top: 0;
     z-index: 1000;
+    padding: 1rem 5%; /* Padding inicial */
+    transition: padding 0.3s ease-in-out; /* Animación del padding */
+}
+
+header.scrolled {
+    padding: 0.5rem 5%; /* Padding compacto al scrollear */
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
 }
 
@@ -98,10 +105,16 @@ nav {
 }
 
 .logo-central img {
-    width: 160px;
-    height: auto;
+    height: 75px; /* Tamaño del logo en estado scrolleado */
+    width: auto;
     display: block;
+    transition: height 0.3s ease-in-out; /* Animación de la altura */
 }
+
+header:not(.scrolled) .logo-central img {
+    height: 120px; /* Tamaño del logo en estado inicial (grande) */
+}
+/* --- FIN DE ESTILOS DE NAVBAR --- */
 
 .cta-button, .secondary-button, .tertiary-button {
     display: inline-block;
@@ -241,6 +254,8 @@ section h2 {
 .page-content h1 { text-align: center; font-size: 4rem; }
 .page-content .subtitle { text-align: center; font-size: 1.2rem; color: #777; margin-top: -1rem; margin-bottom: 4rem; }
 
+/* Eliminamos las reglas viejas .episodes-list y .video-container */
+
 .manifesto-page {
     text-align: left; 
 }
@@ -317,9 +332,7 @@ footer {
     font-weight: 700;
 }
 
-/* --- INICIO DE LA OPERACIÓN ASALTO MÓVIL --- */
-/* Estas reglas se aplican solo a pantallas de 768px o menos */
-
+/* --- INICIO DE LA OPERACIÓN ASALTO MÓVIL (PANTALLAS PEQUEÑAS) --- */
 @media (max-width: 768px) {
     
     /* --- Ajustes Generales --- */
@@ -330,22 +343,32 @@ footer {
         margin: 2.5rem auto;
     }
 
-    /* --- Navbar --- */
+    /* --- REINGENIERÍA DEL NAVBAR PARA MÓVIL --- */
     nav {
-        flex-wrap: wrap;
-        justify-content: center;
+        flex-direction: column; /* Apilamos todo verticalmente */
+        gap: 1rem; /* Espacio entre logo y la fila de links */
     }
     .logo-central {
-        order: -1; /* Mueve el logo arriba en móvil */
-        width: 100%;
-        margin-bottom: 1rem;
+        order: -1; /* Mueve el logo arriba de todo */
+        height: 60px; /* Tamaño fijo para el logo en móvil */
     }
-    .social-icons {
+    header:not(.scrolled) .logo-central img,
+    header.scrolled .logo-central img {
+        height: 60px; /* Anulamos la animación en móvil */
+    }
+    .nav-bottom-row {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+    }
+    .social-icons, .main-nav {
         gap: 0.8rem;
     }
     .main-nav a {
         font-size: 0.9rem;
     }
+    /* --- FIN DE REINGENIERÍA --- */
 
     /* --- Títulos --- */
     .hero h1 { font-size: 2.5rem; }
@@ -358,8 +381,8 @@ footer {
         gap: 1.5rem;
     }
 
-    .episode-card-large iframe {
-        flex-basis: auto; /* Resetea la base */
+    .episode-card-large iframe, .manifesto-image-container {
+        flex-basis: auto;
     }
     
     .episode-card-large .episode-info, .manifesto-text-container {
@@ -369,54 +392,4 @@ footer {
     .manifesto-image-container {
         max-width: 80%;
     }
-    /* ===== Mobile navbar & logo (solo móvil) ===== */
-@media (max-width: 768px) {
-  header {
-    min-height: 72px;            /* reserva altura estable: no más aplastado */
-  }
-
-  nav {
-    gap: 0.5rem;                  /* menos espacio entre grupos */
-    padding: 0.25rem 5%;
-  }
-
-  .social-icons {
-    gap: 0.6rem;
-    flex: 0 1 auto;
-  }
-  .social-icons a img {
-    height: 20px;                 /* íconos más chicos en móvil */
-    width: auto;
-  }
-
-  .logo-central {
-    flex: 0 0 auto;               /* que NO se encoja */
-  }
-  .logo-central img {
-    width: 110px;                 /* tamaño del logo en móvil */
-    height: auto;
-    aspect-ratio: 1 / 1;          /* mantiene proporción y evita “aplastado” */
-    object-fit: contain;
-    flex-shrink: 0;               /* clave para que no se achique bajo presión */
-  }
-
-  .main-nav {
-    gap: 1rem;
-    flex: 0 1 auto;
-  }
-  .main-nav a {
-    font-size: 0.95rem;           /* texto un toque más chico */
-    line-height: 1;
-    padding: 0.25rem 0;
-  }
-}
-
-/* Más compacto aún en pantallas chicas */
-@media (max-width: 420px) {
-  header { min-height: 64px; }
-  .logo-central img { width: 96px; }
-  .social-icons a img { height: 18px; }
-  .main-nav a { font-size: 0.9rem; }
-}
-
 }
