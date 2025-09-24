@@ -418,4 +418,78 @@ footer {
   .social-icons a img { height: 18px; }
   .main-nav a { font-size: 0.9rem; }
 }
+
+/* ===== Base: botón hamburguesa ===== */
+.hamburger {
+  display: none; /* visible solo en móvil */
+  background: transparent;
+  border: 0;
+  padding: 0.4rem;
+  cursor: pointer;
+  align-items: center;
+  justify-content: center;
+}
+.hamburger span {
+  display: block;
+  width: 24px;
+  height: 2px;
+  background: var(--heading-color);
+  margin: 5px 0;
+  transition: transform .25s ease, opacity .25s ease;
+}
+
+/* Estado activo (animación X) */
+.hamburger.is-open span:nth-child(1){ transform: translateY(7px) rotate(45deg); }
+.hamburger.is-open span:nth-child(2){ opacity: 0; }
+.hamburger.is-open span:nth-child(3){ transform: translateY(-7px) rotate(-45deg); }
+
+/* ===== Menú móvil oculto por defecto ===== */
+.mobile-menu {
+  position: fixed;
+  top: 64px;          /* bajo el header sticky */
+  right: 0;
+  left: 0;
+  background: var(--card-bg);
+  border-top: 1px solid #eee;
+  box-shadow: 0 8px 24px rgba(0,0,0,.08);
+  display: flex;
+  flex-direction: column;
+  padding: .75rem 1rem;
+  gap: .75rem;
+  z-index: 999;
+}
+.mobile-menu a {
+  font-weight: 700;
+  color: var(--text-color);
+  padding: .5rem 0;
+}
+
+/* ===== SOLO MÓVIL ===== */
+@media (max-width: 768px) {
+  /* compactar nav existente (ya lo venías usando) */
+  header { min-height: 72px; }
+  nav { gap: .5rem; padding: .25rem 5%; }
+
+  /* Izquierda: íconos */
+  .social-icons { gap: .6rem; flex: 0 1 auto; }
+  .social-icons a img { height: 20px; width: auto; }
+
+  /* Centro: logo (no se encoja) */
+  .logo-central { flex: 1 1 auto; display: flex; justify-content: center; }
+  .logo-central img { width: 110px; height: auto; aspect-ratio: 1/1; object-fit: contain; flex-shrink: 0; }
+
+  /* Derecha: hamburguesa visible */
+  .hamburger { display: inline-flex; }
+
+  /* Ocultar menú desktop en móvil */
+  .main-nav { display: none; }
+}
+
+/* Móviles muy chicos */
+@media (max-width: 420px) {
+  header { min-height: 64px; }
+  .logo-central img { width: 96px; }
+  .social-icons a img { height: 18px; }
+}
+
 }

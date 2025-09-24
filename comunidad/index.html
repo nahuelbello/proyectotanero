@@ -45,10 +45,21 @@
     loading="eager">
 </a>
 
+<!-- Botón hamburguesa (solo móvil) -->
+  <button class="hamburger" aria-label="Abrir menú" aria-expanded="false" aria-controls="mobile-menu">
+    <span></span><span></span><span></span>
+  </button>
+
     <ul class="main-nav">
         <li><a href="/episodios/">Episodios</a></li>
         <li><a href="/manifiesto/">Manifiesto</a></li>
         <!-- <li><a href="/comunidad/">Comunidad</a></li> -->
+         
+         <!-- Menú móvil desplegable -->
+<div id="mobile-menu" class="mobile-menu" hidden>
+  <a href="/episodios/">Episodios</a>
+  <a href="/manifiesto/">Manifiesto</a>
+</div>
     </ul>
 </nav>
     </header>
