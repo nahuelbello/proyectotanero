@@ -369,4 +369,53 @@ footer {
     .manifesto-image-container {
         max-width: 80%;
     }
+    /* ===== Mobile navbar & logo (solo móvil) ===== */
+@media (max-width: 768px) {
+  header {
+    min-height: 72px;            /* reserva altura estable: no más aplastado */
+  }
+
+  nav {
+    gap: 0.5rem;                  /* menos espacio entre grupos */
+    padding: 0.25rem 5%;
+  }
+
+  .social-icons {
+    gap: 0.6rem;
+    flex: 0 1 auto;
+  }
+  .social-icons a img {
+    height: 20px;                 /* íconos más chicos en móvil */
+    width: auto;
+  }
+
+  .logo-central {
+    flex: 0 0 auto;               /* que NO se encoja */
+  }
+  .logo-central img {
+    width: 110px;                 /* tamaño del logo en móvil */
+    height: auto;
+    aspect-ratio: 1 / 1;          /* mantiene proporción y evita “aplastado” */
+    object-fit: contain;
+    flex-shrink: 0;               /* clave para que no se achique bajo presión */
+  }
+
+  .main-nav {
+    gap: 1rem;
+    flex: 0 1 auto;
+  }
+  .main-nav a {
+    font-size: 0.95rem;           /* texto un toque más chico */
+    line-height: 1;
+    padding: 0.25rem 0;
+  }
+}
+
+/* Más compacto aún en pantallas chicas */
+@media (max-width: 420px) {
+  header { min-height: 64px; }
+  .logo-central img { width: 96px; }
+  .social-icons a img { height: 18px; }
+  .main-nav a { font-size: 0.9rem; }
+}
 }
