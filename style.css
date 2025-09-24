@@ -98,7 +98,8 @@ nav {
 }
 
 .logo-central img {
-    width: auto;
+    width: 160px;
+    height: auto;
     display: block;
 }
 
