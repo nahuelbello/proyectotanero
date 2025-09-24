@@ -45,31 +45,3 @@ function animateHeader() {
 requestAnimationFrame(animateHeader);
 
 
-// Mobile menu toggle
-const hamburger = document.querySelector('.hamburger');
-const mobileMenu = document.getElementById('mobile-menu');
-
-if (hamburger && mobileMenu) {
-  hamburger.addEventListener('click', () => {
-    const isOpen = hamburger.classList.toggle('is-open');
-    hamburger.setAttribute('aria-expanded', String(isOpen));
-    if (isOpen) {
-      mobileMenu.removeAttribute('hidden');
-      // opcional: bloquear scroll del body
-      // document.body.style.overflow = 'hidden';
-    } else {
-      mobileMenu.setAttribute('hidden', '');
-      // document.body.style.overflow = '';
-    }
-  });
-
-  // Cerrar al navegar
-  mobileMenu.addEventListener('click', (e) => {
-    if (e.target.tagName === 'A') {
-      hamburger.classList.remove('is-open');
-      hamburger.setAttribute('aria-expanded', 'false');
-      mobileMenu.setAttribute('hidden', '');
-      // document.body.style.overflow = '';
-    }
-  });
-}
