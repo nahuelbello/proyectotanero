@@ -262,8 +262,8 @@ section h2 {
 .manifesto-layout {
     display: flex;
     align-items: center; 
-    gap: 3.5rem; 
-    margin-top: 2rem;
+    gap: 1.5rem; 
+    margin-top: 1rem;
 }
 .manifesto-image-container {
     flex: 0 0 45%; 
