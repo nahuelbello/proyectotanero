@@ -196,7 +196,16 @@ section h2 {
     margin-bottom: 3rem;
 }
 
-/* --- ESTILOS UNIFICADOS PARA TODOS LOS EPISODIOS --- */
+/* === LA SOLUCIÓN ESTÁ AQUÍ === */
+
+/* 1. Preparamos el contenedor para que pueda centrar a sus hijos */
+.latest-episode {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Esto centrará la tarjeta del episodio */
+}
+
+/* 2. Le damos un ancho máximo a la tarjeta para que no ocupe el 100% */
 .episode-card-large {
     display: flex;
     gap: 2.5rem;
@@ -205,11 +214,17 @@ section h2 {
     padding: 2rem;
     border-radius: 10px;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
-    margin-bottom: 3rem; /* Espacio entre cada tarjeta de episodio */
+    margin-bottom: 3rem; 
+    width: 100%; /* Le decimos que ocupe el 100% del espacio que le demos */
+    max-width: 1100px; /* PERO, nunca más ancho que 1100px */
+    box-sizing: border-box; /* Importante para que el padding no altere el ancho */
 }
 
+/* === FIN DE LA SOLUCIÓN === */
+
+
 .episode-card-large iframe {
-    flex: 0 0 45%; /* La base del video es 45% del ancho */
+    flex: 0 0 45%; 
     max-width: 560px;
     width: 100%;
     aspect-ratio: 16 / 9;
@@ -217,15 +232,23 @@ section h2 {
     border: none;
 }
 
-.episode-card-large .episode-info {
-    flex: 1; /* El texto ocupa el resto del espacio */
+.episode-card-large .episode-item-info {
+    flex: 1; 
+    display: flex; 
+    flex-direction: column; 
+    justify-content: center; 
+    align-items: center; 
+    gap: 1rem; 
 }
 
 .episode-card-large h3, .episode-card-large h4 {
     font-size: 1.8rem;
-    margin-top: 0;
+    margin: 0; 
 }
-/* --- FIN DE ESTILOS UNIFICADOS --- */
+
+.episode-card-large .episode-item-info p {
+    margin: 0; 
+}
 
 
 .manifesto-teaser {
@@ -254,7 +277,6 @@ section h2 {
 .page-content h1 { text-align: center; font-size: 4rem; }
 .page-content .subtitle { text-align: center; font-size: 1.2rem; color: #777; margin-top: -1rem; margin-bottom: 4rem; }
 
-/* Eliminamos las reglas viejas .episodes-list y .video-container */
 
 .manifesto-page {
     text-align: left; 
@@ -332,10 +354,58 @@ footer {
     font-weight: 700;
 }
 
+.guest-form {
+    display: flex;
+    flex-direction: column; 
+    align-items: center;
+    gap: 1.5rem;
+    width: 100%;
+    max-width: 600px; 
+    margin: 2rem auto 0 auto;
+}
+
+.community-box .guest-form input,
+.community-box .guest-form textarea {
+    width: 90% !important; 
+    max-width: 500px !important; 
+    padding: 1rem;
+    font-size: 1rem;
+    font-family: var(--body-font);
+    border: 2px solid #ddd;
+    background-color: #fff;
+    color: var(--text-color);
+    border-radius: 5px;
+    box-sizing: border-box; 
+    text-align: center;
+}
+
+.guest-form input:focus,
+.guest-form textarea:focus {
+    outline: 2px solid var(--primary-color);
+    border-color: var(--primary-color);
+}
+
+.guest-form textarea {
+    min-height: 150px; 
+    resize: vertical; 
+}
+
+.guest-form button {
+    width: auto; 
+    align-self: center;
+}
+
+/* --- Estilos para el botón de Instagram en Manifiesto --- */
+.manifesto-image-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem; /* Espacio entre la foto y el botón */
+}
+
 /* --- INICIO DE LA OPERACIÓN ASALTO MÓVIL (PANTALLAS PEQUEÑAS) --- */
 @media (max-width: 768px) {
     
-    /* --- Ajustes Generales --- */
     section {
         padding: 2.5rem 0;
     }
@@ -343,18 +413,17 @@ footer {
         margin: 2.5rem auto;
     }
 
-    /* --- REINGENIERÍA DEL NAVBAR PARA MÓVIL --- */
     nav {
-        flex-direction: column; /* Apilamos todo verticalmente */
-        gap: 1rem; /* Espacio entre logo y la fila de links */
+        flex-direction: column; 
+        gap: 1rem; 
     }
     .logo-central {
-        order: -1; /* Mueve el logo arriba de todo */
-        height: 60px; /* Tamaño fijo para el logo en móvil */
+        order: -1; 
+        height: 60px; 
     }
     header:not(.scrolled) .logo-central img,
     header.scrolled .logo-central img {
-        height: 60px; /* Anulamos la animación en móvil */
+        height: 60px; 
     }
     .nav-bottom-row {
         display: flex;
@@ -368,14 +437,12 @@ footer {
     .main-nav a {
         font-size: 0.9rem;
     }
-    /* --- FIN DE REINGENIERÍA --- */
 
-    /* --- Títulos --- */
     .hero h1 { font-size: 2.5rem; }
     section h2 { font-size: 2.2rem; }
     .page-content h1 { font-size: 2.8rem; }
+    .community-box h2 { font-size: 2.2rem; }
 
-    /* --- Layouts de Columna --- */
     .episode-card-large, .manifesto-layout {
         flex-direction: column;
         gap: 1.5rem;
@@ -385,11 +452,27 @@ footer {
         flex-basis: auto;
     }
     
-    .episode-card-large .episode-info, .manifesto-text-container {
+    .episode-card-large .episode-item-info, .manifesto-text-container {
         text-align: center;
+        align-items: center;
     }
 
     .manifesto-image-container {
         max-width: 80%;
+    }
+    
+    .community-box {
+        padding: 2rem 1.5rem; 
+    }
+
+    .community-box .guest-form input,
+    .community-box .guest-form textarea {
+        width: 100% !important;
+        font-size: 0.9rem; 
+    }
+
+    .page-content .subtitle {
+        font-size: 1rem; 
+        margin-bottom: 2.5rem;
     }
 }
