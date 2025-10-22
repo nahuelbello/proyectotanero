@@ -256,7 +256,8 @@ section h2 {
     background-color: var(--card-bg);
     padding: 4rem 2rem;
     border-radius: 10px;
-     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+    margin-bottom: 4rem; /* <-- ESTA LÍNEA AÑADÍ */
 }
 .manifesto-teaser blockquote {
     font-size: 2rem;
