@@ -1,0 +1,884 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Proyecto Tanero | Nahuel Bello</title>
+    <meta name="description" content="Hackeando el sistema americano a favor de los latinos. Contenido real sobre la vida en USA, credito, negocios y todo lo que nadie te cuenta. Por Nahuel Bello.">
+    <link rel="icon" type="image/png" href="images/favicon.png">
+    <link rel="apple-touch-icon" href="images/apple-icon.png">
+    <meta property="og:title" content="Proyecto Tanero | Nahuel Bello">
+    <meta property="og:description" content="Hackeando el sistema americano a favor de los latinos. Contenido real, sin filtro.">
+    <meta property="og:image" content="images/nahuelbello.png">
+    <meta property="og:type" content="website">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        /* =============================================
+           PROYECTO TANERO — Premium Landing 2026
+           ============================================= */
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --bg: #050505;
+            --surface: #0a0a0a;
+            --surface-2: #111111;
+            --border: #1a1a1a;
+            --border-hover: #2a2a2a;
+            --text-primary: #f5f5f5;
+            --text-secondary: #888888;
+            --text-muted: #555555;
+            --accent: #e8ff47;
+            --accent-dim: #e8ff4715;
+            --accent-mid: #e8ff4730;
+            --gradient-1: linear-gradient(135deg, #e8ff47, #a8e600);
+            --radius-sm: 12px;
+            --radius-md: 16px;
+            --radius-lg: 24px;
+            --radius-xl: 32px;
+        }
+
+        html { scroll-behavior: auto; -webkit-font-smoothing: antialiased; }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--bg);
+            color: var(--text-primary);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        /* Noise overlay */
+        body::after {
+            content: '';
+            position: fixed;
+            inset: 0;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.025'/%3E%3C/svg%3E");
+            pointer-events: none;
+            z-index: 9999;
+        }
+
+        ::selection { background: var(--accent); color: var(--bg); }
+        a { color: inherit; text-decoration: none; }
+
+        /* ── LOADER ── */
+        .loader {
+            position: fixed; inset: 0; z-index: 10000;
+            background: var(--bg);
+            display: flex; flex-direction: column;
+            align-items: center; justify-content: center;
+            transition: opacity 0.6s ease, visibility 0.6s ease;
+        }
+        .loader.done { opacity: 0; visibility: hidden; pointer-events: none; }
+        .loader-logo {
+            width: 60px; height: 60px; margin-bottom: 32px;
+            opacity: 0; animation: loaderFadeIn 0.5s 0.2s forwards;
+        }
+        .loader-bar-track {
+            width: 200px; height: 2px; background: var(--border);
+            border-radius: 2px; overflow: hidden;
+            opacity: 0; animation: loaderFadeIn 0.5s 0.4s forwards;
+        }
+        .loader-bar {
+            height: 100%; width: 0; background: var(--accent);
+            border-radius: 2px; animation: loaderProgress 1.2s 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+        .loader-text {
+            margin-top: 20px; font-size: 0.7rem; text-transform: uppercase;
+            letter-spacing: 0.3em; color: var(--text-muted);
+            opacity: 0; animation: loaderFadeIn 0.5s 0.4s forwards;
+        }
+        @keyframes loaderFadeIn { to { opacity: 1; } }
+        @keyframes loaderProgress { to { width: 100%; } }
+
+        /* ── NAV ── */
+        nav {
+            position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+            padding: 20px 40px;
+            display: flex; justify-content: space-between; align-items: center;
+            transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        nav.scrolled {
+            background: rgba(5,5,5,0.8);
+            backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px);
+            border-bottom: 1px solid var(--border);
+            padding: 14px 40px;
+        }
+        .nav-logo { display: flex; align-items: center; gap: 12px; }
+        .nav-logo img { height: 32px; width: auto; }
+        .nav-links { display: flex; gap: 32px; align-items: center; }
+        .nav-links a {
+            font-size: 0.82rem; font-weight: 500; color: var(--text-secondary);
+            transition: color 0.3s; letter-spacing: 0.03em; text-transform: uppercase;
+        }
+        .nav-links a:hover { color: var(--text-primary); }
+        .nav-cta {
+            background: var(--accent) !important; color: var(--bg) !important;
+            padding: 10px 24px; border-radius: 100px;
+            font-weight: 700 !important; font-size: 0.82rem !important;
+            transition: transform 0.3s, box-shadow 0.3s !important;
+        }
+        .nav-cta:hover { transform: scale(1.05); box-shadow: 0 0 30px var(--accent-dim); }
+
+        .menu-toggle {
+            display: none; background: none; border: none; cursor: pointer;
+            width: 32px; height: 24px; position: relative; z-index: 1001;
+        }
+        .menu-toggle span {
+            display: block; width: 100%; height: 2px; background: var(--text-primary);
+            position: absolute; left: 0; transition: all 0.3s ease;
+        }
+        .menu-toggle span:nth-child(1) { top: 0; }
+        .menu-toggle span:nth-child(2) { top: 11px; }
+        .menu-toggle span:nth-child(3) { top: 22px; }
+        .menu-toggle.active span:nth-child(1) { top: 11px; transform: rotate(45deg); }
+        .menu-toggle.active span:nth-child(2) { opacity: 0; }
+        .menu-toggle.active span:nth-child(3) { top: 11px; transform: rotate(-45deg); }
+
+        /* ── HERO ── */
+        .hero {
+            min-height: 100vh; min-height: 100dvh;
+            display: flex; flex-direction: column; justify-content: center; align-items: center;
+            text-align: center; padding: 120px 24px 80px; position: relative;
+            overflow: hidden;
+        }
+        .hero-bg-glow {
+            position: absolute; top: -30%; left: 50%; transform: translateX(-50%);
+            width: 900px; height: 900px;
+            background: radial-gradient(circle, var(--accent-dim) 0%, transparent 65%);
+            pointer-events: none; opacity: 0.8;
+        }
+        .hero-grid-bg {
+            position: absolute; inset: 0;
+            background-image:
+                linear-gradient(var(--border) 1px, transparent 1px),
+                linear-gradient(90deg, var(--border) 1px, transparent 1px);
+            background-size: 80px 80px;
+            opacity: 0.3;
+            mask-image: radial-gradient(ellipse 60% 60% at 50% 40%, black 20%, transparent 70%);
+            -webkit-mask-image: radial-gradient(ellipse 60% 60% at 50% 40%, black 20%, transparent 70%);
+        }
+        .hero-badge {
+            display: inline-flex; align-items: center; gap: 8px;
+            padding: 8px 20px; background: var(--surface-2);
+            border: 1px solid var(--border); border-radius: 100px;
+            font-size: 0.8rem; color: var(--text-secondary);
+            margin-bottom: 40px; position: relative; z-index: 1;
+        }
+        .hero-badge .dot {
+            width: 6px; height: 6px; background: var(--accent);
+            border-radius: 50%; animation: pulse 2s infinite;
+        }
+        .hero h1 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: clamp(3.2rem, 10vw, 8rem);
+            font-weight: 800; line-height: 0.92; letter-spacing: -0.04em;
+            margin-bottom: 32px; position: relative; z-index: 1;
+        }
+        .hero h1 .line { display: block; overflow: hidden; }
+        .hero h1 .line-inner {
+            display: block;
+            transform: translateY(110%);
+            transition: transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .hero h1 .line-inner.visible { transform: translateY(0); }
+        .hero h1 .accent {
+            background: var(--gradient-1);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+        }
+        .hero-subtitle {
+            font-size: clamp(1rem, 2.5vw, 1.25rem);
+            color: var(--text-secondary); max-width: 520px; line-height: 1.7;
+            font-weight: 300; margin-bottom: 48px; position: relative; z-index: 1;
+        }
+        .hero-actions {
+            display: flex; gap: 16px; flex-wrap: wrap; justify-content: center;
+            position: relative; z-index: 1;
+        }
+        .btn-magnetic { position: relative; display: inline-block; }
+        .btn-primary {
+            display: inline-flex; align-items: center; gap: 10px;
+            padding: 18px 40px; background: var(--accent); color: var(--bg);
+            border-radius: 100px; font-weight: 700; font-size: 0.95rem;
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            border: none; cursor: pointer; position: relative; overflow: hidden;
+        }
+        .btn-primary::before {
+            content: ''; position: absolute; inset: 0;
+            background: linear-gradient(135deg, transparent 30%, rgba(255,255,255,0.2) 50%, transparent 70%);
+            transform: translateX(-100%); transition: transform 0.6s;
+        }
+        .btn-primary:hover::before { transform: translateX(100%); }
+        .btn-primary:hover {
+            transform: translateY(-2px) scale(1.03);
+            box-shadow: 0 0 50px var(--accent-mid), 0 10px 40px rgba(0,0,0,0.4);
+        }
+        .btn-secondary {
+            display: inline-flex; align-items: center; gap: 10px;
+            padding: 18px 40px; background: transparent; color: var(--text-primary);
+            border-radius: 100px; font-weight: 600; font-size: 0.95rem;
+            border: 1px solid var(--border); transition: all 0.3s; cursor: pointer;
+        }
+        .btn-secondary:hover { border-color: var(--text-muted); background: var(--surface-2); }
+
+        .scroll-indicator {
+            position: absolute; bottom: 40px; left: 50%; transform: translateX(-50%);
+            display: flex; flex-direction: column; align-items: center; gap: 8px;
+        }
+        .scroll-indicator span {
+            font-size: 0.65rem; text-transform: uppercase;
+            letter-spacing: 0.2em; color: var(--text-muted);
+        }
+        .scroll-line { width: 1px; height: 48px; background: var(--border); position: relative; overflow: hidden; }
+        .scroll-line::after {
+            content: ''; position: absolute; top: -100%; left: 0;
+            width: 100%; height: 100%; background: var(--accent);
+            animation: scrollDown 2s infinite;
+        }
+
+        /* ── MARQUEE ── */
+        .marquee-section {
+            padding: 32px 0; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);
+            overflow: hidden; position: relative;
+        }
+        .marquee-track {
+            display: flex; width: max-content;
+            animation: marqueeScroll 25s linear infinite;
+        }
+        .marquee-track:hover { animation-play-state: paused; }
+        .marquee-item {
+            display: flex; align-items: center; gap: 24px;
+            padding: 0 24px; white-space: nowrap;
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.1rem; font-weight: 600; text-transform: uppercase;
+            letter-spacing: 0.05em; color: var(--text-muted);
+        }
+        .marquee-item .sep {
+            width: 6px; height: 6px; background: var(--accent);
+            border-radius: 50%; flex-shrink: 0;
+        }
+        .marquee-item.highlight { color: var(--accent); }
+        @keyframes marqueeScroll { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+
+        /* ── PLATFORMS ── */
+        .platforms { padding: 120px 24px; text-align: center; }
+        .section-label {
+            font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.25em;
+            color: var(--accent); font-weight: 600; margin-bottom: 16px;
+        }
+        .section-title {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: clamp(2rem, 5vw, 3.2rem);
+            font-weight: 700; letter-spacing: -0.03em; margin-bottom: 64px;
+        }
+        .platforms-grid {
+            display: grid; grid-template-columns: repeat(3, 1fr);
+            gap: 16px; max-width: 800px; margin: 0 auto;
+        }
+        .platform-card {
+            display: flex; align-items: center; gap: 16px;
+            padding: 24px 28px; background: var(--surface);
+            border: 1px solid var(--border); border-radius: var(--radius-md);
+            transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1); cursor: pointer;
+            position: relative; overflow: hidden;
+            transform-style: preserve-3d; perspective: 800px;
+        }
+        .platform-card .card-shine {
+            position: absolute; inset: 0;
+            background: radial-gradient(circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+                rgba(232,255,71,0.08) 0%, transparent 60%);
+            opacity: 0; transition: opacity 0.3s; pointer-events: none;
+        }
+        .platform-card:hover .card-shine { opacity: 1; }
+        .platform-card:hover {
+            border-color: var(--accent); transform: translateY(-4px);
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3), 0 0 0 1px var(--accent);
+        }
+        .platform-card img { width: 32px; height: 32px; filter: brightness(0) invert(1); opacity: 0.8; transition: all 0.3s; flex-shrink: 0; }
+        .platform-card:hover img { filter: none; opacity: 1; }
+        .platform-info { text-align: left; }
+        .platform-name { font-weight: 600; font-size: 0.92rem; }
+        .platform-handle { font-size: 0.78rem; color: var(--text-muted); margin-top: 2px; }
+
+        /* ── ABOUT ── */
+        .about { padding: 120px 24px; max-width: 1100px; margin: 0 auto; }
+        .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+        .about-image { position: relative; }
+        .about-image img {
+            width: 100%; max-width: 400px; border-radius: var(--radius-lg);
+            filter: grayscale(30%); transition: filter 0.6s;
+        }
+        .about-image:hover img { filter: grayscale(0%); }
+        .about-image::before {
+            content: ''; position: absolute;
+            top: -12px; left: -12px; right: 12px; bottom: 12px;
+            border: 1px solid var(--accent-mid); border-radius: calc(var(--radius-lg) + 4px);
+            transition: all 0.5s;
+        }
+        .about-image:hover::before { top: -8px; left: -8px; border-color: var(--accent); }
+        .about-content .section-label { text-align: left; }
+        .about-content h2 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: clamp(1.8rem, 4vw, 2.8rem);
+            font-weight: 700; letter-spacing: -0.03em; margin-bottom: 24px; line-height: 1.1;
+        }
+        .about-content p { color: var(--text-secondary); font-size: 1.05rem; line-height: 1.8; margin-bottom: 16px; }
+        .about-stats {
+            display: flex; gap: 48px; margin-top: 40px;
+            padding-top: 32px; border-top: 1px solid var(--border);
+        }
+        .stat h3 {
+            font-family: 'Space Grotesk', sans-serif; font-size: 2.2rem;
+            font-weight: 800; color: var(--accent);
+        }
+        .stat p {
+            font-size: 0.75rem !important; color: var(--text-muted) !important;
+            text-transform: uppercase; letter-spacing: 0.12em; margin-bottom: 0 !important;
+        }
+
+        /* ── CONTENT / VIDEOS ── */
+        .content-section { padding: 120px 24px; text-align: center; }
+        .videos-grid {
+            display: grid; grid-template-columns: repeat(3, 1fr);
+            gap: 24px; max-width: 1100px; margin: 0 auto;
+        }
+        .video-card {
+            border-radius: var(--radius-lg); overflow: hidden;
+            border: 1px solid var(--border);
+            background: var(--surface);
+            transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+            position: relative;
+        }
+        .video-card:hover {
+            border-color: var(--border-hover);
+            transform: translateY(-8px);
+            box-shadow: 0 30px 80px rgba(0,0,0,0.4);
+        }
+        .video-card iframe {
+            width: 100%; aspect-ratio: 9/16; display: block; border: none;
+        }
+        .video-card .video-label {
+            padding: 16px 20px; text-align: left;
+        }
+        .video-card .video-label h4 {
+            font-size: 0.88rem; font-weight: 600; margin-bottom: 4px;
+        }
+        .video-card .video-label span {
+            font-size: 0.75rem; color: var(--text-muted);
+        }
+
+        /* ── NEWSLETTER ── */
+        .newsletter {
+            padding: 140px 24px; text-align: center; position: relative; overflow: hidden;
+        }
+        .newsletter-glow {
+            position: absolute; bottom: -20%; left: 50%; transform: translateX(-50%);
+            width: 700px; height: 700px;
+            background: radial-gradient(circle, var(--accent-dim) 0%, transparent 65%);
+            pointer-events: none;
+        }
+        .newsletter h2 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: clamp(2rem, 5vw, 3.2rem);
+            font-weight: 700; letter-spacing: -0.03em; margin-bottom: 16px;
+            position: relative;
+        }
+        .newsletter p {
+            color: var(--text-secondary); font-size: 1.05rem;
+            max-width: 460px; margin: 0 auto 40px; position: relative;
+        }
+        .email-form {
+            display: flex; gap: 12px; max-width: 480px; margin: 0 auto; position: relative;
+        }
+        .email-form input {
+            flex: 1; padding: 18px 24px; background: var(--surface);
+            border: 1px solid var(--border); border-radius: 100px;
+            color: var(--text-primary); font-size: 0.95rem; font-family: inherit;
+            outline: none; transition: border-color 0.3s, box-shadow 0.3s;
+        }
+        .email-form input::placeholder { color: var(--text-muted); }
+        .email-form input:focus { border-color: var(--accent); box-shadow: 0 0 20px var(--accent-dim); }
+        .email-form button {
+            padding: 18px 36px; background: var(--accent); color: var(--bg);
+            border: none; border-radius: 100px; font-weight: 700;
+            font-size: 0.9rem; cursor: pointer; font-family: inherit;
+            transition: all 0.3s; white-space: nowrap;
+        }
+        .email-form button:hover { transform: scale(1.05); box-shadow: 0 0 30px var(--accent-mid); }
+        .newsletter-note {
+            font-size: 0.75rem; color: var(--text-muted); margin-top: 16px; position: relative;
+        }
+
+        /* ── FOOTER ── */
+        footer { padding: 60px 40px 40px; border-top: 1px solid var(--border); }
+        .footer-content {
+            max-width: 1100px; margin: 0 auto;
+            display: flex; justify-content: space-between; align-items: center;
+            flex-wrap: wrap; gap: 24px;
+        }
+        .footer-left { display: flex; align-items: center; gap: 12px; }
+        .footer-left img { height: 24px; }
+        .footer-left span { font-size: 0.85rem; color: var(--text-muted); }
+        .footer-socials { display: flex; gap: 12px; }
+        .footer-socials a {
+            width: 42px; height: 42px;
+            display: flex; align-items: center; justify-content: center;
+            border: 1px solid var(--border); border-radius: 50%; transition: all 0.3s;
+        }
+        .footer-socials a:hover { border-color: var(--accent); background: var(--accent-dim); transform: translateY(-2px); }
+        .footer-socials img { width: 18px; height: 18px; filter: brightness(0) invert(1); opacity: 0.6; }
+        .footer-socials a:hover img { opacity: 1; }
+        .footer-right { font-size: 0.75rem; color: var(--text-muted); }
+
+        /* ── ANIMATIONS ── */
+        @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
+        @keyframes scrollDown { 0% { top: -100%; } 100% { top: 100%; } }
+
+        /* Scroll reveal */
+        .reveal { opacity: 0; transform: translateY(50px); transition: all 1s cubic-bezier(0.16, 1, 0.3, 1); }
+        .reveal.visible { opacity: 1; transform: translateY(0); }
+        .reveal-delay-1 { transition-delay: 0.1s; }
+        .reveal-delay-2 { transition-delay: 0.2s; }
+        .reveal-delay-3 { transition-delay: 0.3s; }
+
+        /* Parallax elements */
+        [data-parallax] { transition: transform 0.1s linear; will-change: transform; }
+
+        /* Cursor glow */
+        .cursor-glow {
+            position: fixed; width: 350px; height: 350px;
+            background: radial-gradient(circle, var(--accent-dim) 0%, transparent 70%);
+            border-radius: 50%; pointer-events: none;
+            transform: translate(-50%, -50%); z-index: -1;
+            opacity: 0; transition: opacity 0.4s;
+        }
+
+        /* ── RESPONSIVE ── */
+        @media (max-width: 768px) {
+            nav { padding: 16px 20px; }
+            nav.scrolled { padding: 12px 20px; }
+            .nav-links {
+                position: fixed; inset: 0; background: var(--bg);
+                flex-direction: column; justify-content: center; gap: 32px;
+                opacity: 0; visibility: hidden; transition: all 0.4s;
+                z-index: 1000;
+            }
+            .nav-links.open { opacity: 1; visibility: visible; }
+            .nav-links a { font-size: 1.2rem; }
+            .menu-toggle { display: block; }
+            .hero h1 { font-size: clamp(2.8rem, 12vw, 5rem); }
+            .marquee-item { font-size: 0.9rem; padding: 0 16px; }
+            .platforms-grid { grid-template-columns: 1fr; max-width: 400px; margin: 0 auto; }
+            .about-grid { grid-template-columns: 1fr; gap: 40px; text-align: center; }
+            .about-image { order: -1; display: flex; justify-content: center; }
+            .about-image img { max-width: 260px; }
+            .about-content .section-label { text-align: center; }
+            .about-stats { justify-content: center; gap: 32px; }
+            .videos-grid { grid-template-columns: 1fr; max-width: 340px; margin: 0 auto; }
+            .email-form { flex-direction: column; }
+            .footer-content { flex-direction: column; text-align: center; }
+            .scroll-indicator { display: none; }
+        }
+        @media (min-width: 769px) and (max-width: 1024px) {
+            .platforms-grid { grid-template-columns: repeat(2, 1fr); }
+            .videos-grid { grid-template-columns: repeat(3, 1fr); gap: 16px; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Loader -->
+    <div class="loader" id="loader">
+        <img src="images/ptweblogo.png" alt="PT" class="loader-logo">
+        <div class="loader-bar-track"><div class="loader-bar"></div></div>
+        <div class="loader-text">Cargando</div>
+    </div>
+
+    <!-- Cursor Glow -->
+    <div class="cursor-glow" id="cursorGlow"></div>
+
+    <!-- Nav -->
+    <nav id="navbar">
+        <a href="/" class="nav-logo">
+            <img src="images/ptweblogo.png" alt="Proyecto Tanero">
+        </a>
+        <div class="nav-links" id="navLinks">
+            <a href="#contenido">Contenido</a>
+            <a href="#plataformas">Plataformas</a>
+            <a href="#sobre">Sobre mi</a>
+            <a href="#newsletter" class="nav-cta">Suscribirme</a>
+        </div>
+        <button class="menu-toggle" id="menuToggle" aria-label="Menu">
+            <span></span><span></span><span></span>
+        </button>
+    </nav>
+
+    <!-- Hero -->
+    <section class="hero" id="hero">
+        <div class="hero-bg-glow" data-parallax="0.15"></div>
+        <div class="hero-grid-bg"></div>
+        <div class="hero-badge">
+            <span class="dot"></span>
+            Miami, FL
+        </div>
+        <h1>
+            <span class="line"><span class="line-inner">Hackeando</span></span>
+            <span class="line"><span class="line-inner">el <span class="accent">sistema</span></span></span>
+        </h1>
+        <p class="hero-subtitle">
+            Todo lo que nadie te cuenta sobre vivir en USA siendo latino. Credito, negocios, impuestos y la realidad sin filtro.
+        </p>
+        <div class="hero-actions">
+            <div class="btn-magnetic">
+                <a href="https://www.tiktok.com/@proyectotanero" class="btn-primary" target="_blank" rel="noopener">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.27 6.27 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.34-6.34V8.75a8.18 8.18 0 004.76 1.52V6.84a4.84 4.84 0 01-1-.15z"/></svg>
+                    Seguime en TikTok
+                </a>
+            </div>
+            <div class="btn-magnetic">
+                <a href="https://instagram.com/nahuelbelloo" class="btn-secondary" target="_blank" rel="noopener">
+                    Instagram
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+                </a>
+            </div>
+        </div>
+        <div class="scroll-indicator">
+            <span>Scroll</span>
+            <div class="scroll-line"></div>
+        </div>
+    </section>
+
+    <!-- Marquee -->
+    <div class="marquee-section">
+        <div class="marquee-track">
+            <div class="marquee-item"><span class="sep"></span> Latinos en USA</div>
+            <div class="marquee-item highlight"><span class="sep"></span> Hackeando el sistema</div>
+            <div class="marquee-item"><span class="sep"></span> Credito</div>
+            <div class="marquee-item"><span class="sep"></span> Negocios</div>
+            <div class="marquee-item highlight"><span class="sep"></span> Sin filtro</div>
+            <div class="marquee-item"><span class="sep"></span> Impuestos</div>
+            <div class="marquee-item"><span class="sep"></span> Miami</div>
+            <div class="marquee-item highlight"><span class="sep"></span> Comunidad</div>
+            <div class="marquee-item"><span class="sep"></span> La realidad</div>
+            <div class="marquee-item"><span class="sep"></span> Entrevistas</div>
+            <div class="marquee-item highlight"><span class="sep"></span> Proyecto Tanero</div>
+            <div class="marquee-item"><span class="sep"></span> LLC</div>
+            <!-- Duplicate for seamless loop -->
+            <div class="marquee-item"><span class="sep"></span> Latinos en USA</div>
+            <div class="marquee-item highlight"><span class="sep"></span> Hackeando el sistema</div>
+            <div class="marquee-item"><span class="sep"></span> Credito</div>
+            <div class="marquee-item"><span class="sep"></span> Negocios</div>
+            <div class="marquee-item highlight"><span class="sep"></span> Sin filtro</div>
+            <div class="marquee-item"><span class="sep"></span> Impuestos</div>
+            <div class="marquee-item"><span class="sep"></span> Miami</div>
+            <div class="marquee-item highlight"><span class="sep"></span> Comunidad</div>
+            <div class="marquee-item"><span class="sep"></span> La realidad</div>
+            <div class="marquee-item"><span class="sep"></span> Entrevistas</div>
+            <div class="marquee-item highlight"><span class="sep"></span> Proyecto Tanero</div>
+            <div class="marquee-item"><span class="sep"></span> LLC</div>
+        </div>
+    </div>
+
+    <!-- Content / Videos -->
+    <section class="content-section reveal" id="contenido">
+        <p class="section-label">Contenido destacado</p>
+        <h2 class="section-title">Miralo vos mismo</h2>
+        <div class="videos-grid">
+            <div class="video-card reveal reveal-delay-1">
+                <iframe src="https://www.youtube.com/embed/nGuYmAmCcxY" title="Podcast - Episodio viral" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+                <div class="video-label">
+                    <h4>El episodio que se hizo viral</h4>
+                    <span>YouTube &middot; 65K+ views</span>
+                </div>
+            </div>
+            <div class="video-card reveal reveal-delay-2">
+                <iframe src="https://www.tiktok.com/embed/v2/7557089282721205518" title="TikTok viral" allowfullscreen loading="lazy"></iframe>
+                <div class="video-label">
+                    <h4>+200K views en TikTok</h4>
+                    <span>TikTok &middot; Viral</span>
+                </div>
+            </div>
+            <div class="video-card reveal reveal-delay-3">
+                <iframe src="https://www.tiktok.com/embed/v2/7570412915468078391" title="American Business Forum" allowfullscreen loading="lazy"></iframe>
+                <div class="video-label">
+                    <h4>American Business Forum</h4>
+                    <span>TikTok &middot; 60K+ views</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Platforms -->
+    <section class="platforms reveal" id="plataformas">
+        <p class="section-label">Encontrame en</p>
+        <h2 class="section-title">Todas las plataformas</h2>
+        <div class="platforms-grid">
+            <a href="https://www.tiktok.com/@proyectotanero" target="_blank" rel="noopener" class="platform-card">
+                <div class="card-shine"></div>
+                <img src="images/tiktok-icon.png" alt="TikTok">
+                <div class="platform-info"><div class="platform-name">TikTok</div><div class="platform-handle">@proyectotanero</div></div>
+            </a>
+            <a href="https://instagram.com/nahuelbelloo" target="_blank" rel="noopener" class="platform-card">
+                <div class="card-shine"></div>
+                <img src="images/instagram-icon.png" alt="Instagram">
+                <div class="platform-info"><div class="platform-name">Instagram</div><div class="platform-handle">@nahuelbelloo</div></div>
+            </a>
+            <a href="https://youtube.com/@proyectotanero" target="_blank" rel="noopener" class="platform-card">
+                <div class="card-shine"></div>
+                <img src="images/youtube-icon.png" alt="YouTube">
+                <div class="platform-info"><div class="platform-name">YouTube</div><div class="platform-handle">Proyecto Tanero</div></div>
+            </a>
+            <a href="https://open.spotify.com/show/proyecto-tanero" target="_blank" rel="noopener" class="platform-card">
+                <div class="card-shine"></div>
+                <img src="images/spotify-icon.png" alt="Spotify">
+                <div class="platform-info"><div class="platform-name">Spotify</div><div class="platform-handle">Podcast</div></div>
+            </a>
+            <a href="https://x.com/proyectotanero" target="_blank" rel="noopener" class="platform-card">
+                <div class="card-shine"></div>
+                <img src="images/x-icon.png" alt="X">
+                <div class="platform-info"><div class="platform-name">X (Twitter)</div><div class="platform-handle">@proyectotanero</div></div>
+            </a>
+            <a href="https://podcasts.apple.com/podcast/proyecto-tanero" target="_blank" rel="noopener" class="platform-card">
+                <div class="card-shine"></div>
+                <img src="images/apple-icon.png" alt="Apple Podcasts">
+                <div class="platform-info"><div class="platform-name">Apple Podcasts</div><div class="platform-handle">Suscribite</div></div>
+            </a>
+        </div>
+    </section>
+
+    <!-- About -->
+    <section class="about reveal" id="sobre">
+        <div class="about-grid">
+            <div class="about-image" data-parallax="0.05">
+                <img src="images/nahuelbello.png" alt="Nahuel Bello">
+            </div>
+            <div class="about-content">
+                <p class="section-label">Quien soy</p>
+                <h2>Soy Nahuel Bello</h2>
+                <p>Argentino en Miami creando Proyecto Tanero: un espacio donde hablo de todo lo que a mi me hubiese gustado saber antes de venir a Estados Unidos.</p>
+                <p>Credito, impuestos, negocios, la vida real del inmigrante. Sin vueltas, sin humo. Contenido que te sirve de verdad si sos latino en USA o estas pensando en venir.</p>
+                <div class="about-stats">
+                    <div class="stat"><h3><span class="counter" data-target="933">0</span></h3><p>Suscriptores YT</p></div>
+                    <div class="stat"><h3><span class="counter" data-target="1600">0</span>+</h3><p>Seguidores TT</p></div>
+                    <div class="stat"><h3><span class="counter" data-target="200">0</span>K</h3><p>Views top video</p></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Newsletter -->
+    <section class="newsletter reveal" id="newsletter">
+        <div class="newsletter-glow" data-parallax="0.1"></div>
+        <p class="section-label">Unite</p>
+        <h2>No te quedes afuera</h2>
+        <p>Dejame tu email y vas a ser el primero en recibir la guia gratuita cuando salga, mas contenido exclusivo y novedades.</p>
+        <form class="email-form" action="gracias.html" method="GET">
+            <input type="email" name="email" placeholder="Tu email" required>
+            <button type="submit">Suscribirme</button>
+        </form>
+        <p class="newsletter-note">Gratis. Sin spam. Te podes dar de baja cuando quieras.</p>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-left">
+                <img src="images/ptweblogo.png" alt="PT">
+                <span>&copy; 2026 Proyecto Tanero LLC</span>
+            </div>
+            <div class="footer-socials">
+                <a href="https://www.tiktok.com/@proyectotanero" target="_blank" rel="noopener" aria-label="TikTok"><img src="images/tiktok-icon.png" alt=""></a>
+                <a href="https://instagram.com/nahuelbelloo" target="_blank" rel="noopener" aria-label="Instagram"><img src="images/instagram-icon.png" alt=""></a>
+                <a href="https://youtube.com/@proyectotanero" target="_blank" rel="noopener" aria-label="YouTube"><img src="images/youtube-icon.png" alt=""></a>
+                <a href="https://x.com/proyectotanero" target="_blank" rel="noopener" aria-label="X"><img src="images/x-icon.png" alt=""></a>
+            </div>
+            <div class="footer-right">
+                Miami, FL &middot; proyectotanero@gmail.com
+            </div>
+        </div>
+    </footer>
+
+    <script>
+    (function() {
+        'use strict';
+
+        // ── LOADER ──
+        window.addEventListener('load', () => {
+            setTimeout(() => document.getElementById('loader').classList.add('done'), 1800);
+        });
+
+        // ── NAV SCROLL ──
+        const navbar = document.getElementById('navbar');
+        let lastScroll = 0;
+        window.addEventListener('scroll', () => {
+            navbar.classList.toggle('scrolled', window.scrollY > 60);
+        }, { passive: true });
+
+        // ── MOBILE MENU ──
+        const menuToggle = document.getElementById('menuToggle');
+        const navLinks = document.getElementById('navLinks');
+        menuToggle.addEventListener('click', () => {
+            menuToggle.classList.toggle('active');
+            navLinks.classList.toggle('open');
+        });
+        navLinks.querySelectorAll('a').forEach(l => l.addEventListener('click', () => {
+            menuToggle.classList.remove('active');
+            navLinks.classList.remove('open');
+        }));
+
+        // ── SMOOTH SCROLL (Lenis-style) ──
+        // Lightweight custom smooth scroll
+        const smoothLinks = document.querySelectorAll('a[href^="#"]');
+        smoothLinks.forEach(a => {
+            a.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    const y = target.getBoundingClientRect().top + window.scrollY - 80;
+                    smoothScrollTo(y, 1200);
+                }
+            });
+        });
+
+        function smoothScrollTo(targetY, duration) {
+            const startY = window.scrollY;
+            const diff = targetY - startY;
+            let start;
+            function step(timestamp) {
+                if (!start) start = timestamp;
+                const progress = Math.min((timestamp - start) / duration, 1);
+                const ease = 1 - Math.pow(1 - progress, 4); // easeOutQuart
+                window.scrollTo(0, startY + diff * ease);
+                if (progress < 1) requestAnimationFrame(step);
+            }
+            requestAnimationFrame(step);
+        }
+
+        // ── HERO TEXT REVEAL ──
+        setTimeout(() => {
+            document.querySelectorAll('.hero .line-inner').forEach((el, i) => {
+                setTimeout(() => el.classList.add('visible'), 300 + i * 200);
+            });
+            // Fade in other hero elements
+            const heroEls = ['.hero-badge', '.hero-subtitle', '.hero-actions', '.scroll-indicator'];
+            heroEls.forEach((sel, i) => {
+                const el = document.querySelector(sel);
+                if (el) {
+                    el.style.opacity = '0';
+                    el.style.transform = 'translateY(30px)';
+                    el.style.transition = 'all 0.8s cubic-bezier(0.16, 1, 0.3, 1)';
+                    setTimeout(() => {
+                        el.style.opacity = '1';
+                        el.style.transform = 'translateY(0)';
+                    }, 800 + i * 200);
+                }
+            });
+        }, 1800); // After loader
+
+        // ── SCROLL REVEAL ──
+        const revealObs = new IntersectionObserver(entries => {
+            entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+        }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+        document.querySelectorAll('.reveal').forEach(el => revealObs.observe(el));
+
+        // ── COUNTER ANIMATION ──
+        const counterObs = new IntersectionObserver(entries => {
+            entries.forEach(e => {
+                if (e.isIntersecting && !e.target.dataset.counted) {
+                    e.target.dataset.counted = 'true';
+                    animateCounter(e.target);
+                }
+            });
+        }, { threshold: 0.5 });
+        document.querySelectorAll('.counter').forEach(el => counterObs.observe(el));
+
+        function animateCounter(el) {
+            const target = parseInt(el.dataset.target);
+            const duration = 2000;
+            const start = performance.now();
+            function update(now) {
+                const progress = Math.min((now - start) / duration, 1);
+                const ease = 1 - Math.pow(1 - progress, 3);
+                el.textContent = Math.floor(target * ease).toLocaleString();
+                if (progress < 1) requestAnimationFrame(update);
+            }
+            requestAnimationFrame(update);
+        }
+
+        // ── PARALLAX ──
+        const parallaxEls = document.querySelectorAll('[data-parallax]');
+        window.addEventListener('scroll', () => {
+            const scrollY = window.scrollY;
+            parallaxEls.forEach(el => {
+                const speed = parseFloat(el.dataset.parallax);
+                const rect = el.parentElement.getBoundingClientRect();
+                const center = rect.top + rect.height / 2;
+                el.style.transform = `translateY(${center * speed}px)`;
+            });
+        }, { passive: true });
+
+        // ── CURSOR GLOW (desktop only) ──
+        const glow = document.getElementById('cursorGlow');
+        if (window.matchMedia('(pointer: fine)').matches) {
+            let mouseX = 0, mouseY = 0, glowX = 0, glowY = 0;
+            document.addEventListener('mousemove', e => {
+                mouseX = e.clientX; mouseY = e.clientY;
+                glow.style.opacity = '1';
+            });
+            document.addEventListener('mouseleave', () => glow.style.opacity = '0');
+            // Smooth follow
+            (function glowLoop() {
+                glowX += (mouseX - glowX) * 0.08;
+                glowY += (mouseY - glowY) * 0.08;
+                glow.style.left = glowX + 'px';
+                glow.style.top = glowY + 'px';
+                requestAnimationFrame(glowLoop);
+            })();
+        }
+
+        // ── MAGNETIC BUTTONS ──
+        if (window.matchMedia('(pointer: fine)').matches) {
+            document.querySelectorAll('.btn-magnetic').forEach(wrap => {
+                const btn = wrap.querySelector('a, button');
+                wrap.addEventListener('mousemove', e => {
+                    const rect = wrap.getBoundingClientRect();
+                    const x = e.clientX - rect.left - rect.width / 2;
+                    const y = e.clientY - rect.top - rect.height / 2;
+                    btn.style.transform = `translate(${x * 0.15}px, ${y * 0.15}px)`;
+                });
+                wrap.addEventListener('mouseleave', () => {
+                    btn.style.transform = 'translate(0, 0)';
+                    btn.style.transition = 'transform 0.4s cubic-bezier(0.16, 1, 0.3, 1)';
+                    setTimeout(() => btn.style.transition = '', 400);
+                });
+            });
+        }
+
+        // ── 3D TILT CARDS + SHINE ──
+        if (window.matchMedia('(pointer: fine)').matches) {
+            document.querySelectorAll('.platform-card').forEach(card => {
+                card.addEventListener('mousemove', e => {
+                    const rect = card.getBoundingClientRect();
+                    const x = (e.clientX - rect.left) / rect.width;
+                    const y = (e.clientY - rect.top) / rect.height;
+                    const rotateX = (0.5 - y) * 12;
+                    const rotateY = (x - 0.5) * 12;
+                    card.style.transform = `perspective(800px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-4px)`;
+                    card.style.setProperty('--mouse-x', (x * 100) + '%');
+                    card.style.setProperty('--mouse-y', (y * 100) + '%');
+                });
+                card.addEventListener('mouseleave', () => {
+                    card.style.transform = 'perspective(800px) rotateX(0) rotateY(0) translateY(0)';
+                    card.style.transition = 'all 0.5s cubic-bezier(0.16, 1, 0.3, 1)';
+                    setTimeout(() => card.style.transition = 'all 0.5s cubic-bezier(0.16, 1, 0.3, 1)', 500);
+                });
+                card.addEventListener('mouseenter', () => {
+                    card.style.transition = 'border-color 0.3s, box-shadow 0.3s';
+                });
+            });
+        }
+
+    })();
+    </script>
+</body>
+</html>
