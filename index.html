@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Proyecto Tanero | Nahuel Bello</title>
+    <title>Proyecto Tanero | Hackeando el sistema americano</title>
     <meta name="description" content="Hackeando el sistema americano a favor de los latinos. Contenido real sobre la vida en USA, credito, negocios y todo lo que nadie te cuenta. Por Nahuel Bello.">
     <link rel="icon" type="image/png" href="images/favicon.png">
     <link rel="apple-touch-icon" href="images/apple-icon.png">
@@ -11,6 +11,15 @@
     <meta property="og:description" content="Hackeando el sistema americano a favor de los latinos. Contenido real, sin filtro.">
     <meta property="og:image" content="images/nahuelbello.png">
     <meta property="og:type" content="website">
+    <meta property="og:url" content="https://proyectotanero.com">
+    <link rel="canonical" href="https://proyectotanero.com">
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-NEPLE1EMG2"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-NEPLE1EMG2');
+    </script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -493,7 +502,7 @@
 <body>
     <!-- Loader -->
     <div class="loader" id="loader">
-        <img src="images/ptweblogo.png" alt="PT" class="loader-logo">
+        <img src="images/ptweblogo.png" alt="PT" class="loader-logo" width="60" height="60">
         <div class="loader-bar-track"><div class="loader-bar"></div></div>
         <div class="loader-text">Cargando</div>
     </div>
@@ -504,7 +513,7 @@
     <!-- Nav -->
     <nav id="navbar">
         <a href="/" class="nav-logo">
-            <img src="images/ptweblogo.png" alt="Proyecto Tanero">
+            <img src="images/ptweblogo.png" alt="Proyecto Tanero" width="32" height="32">
         </a>
         <div class="nav-links" id="navLinks">
             <a href="#contenido">Contenido</a>
@@ -596,14 +605,14 @@
                 </div>
             </div>
             <div class="video-card reveal reveal-delay-2">
-                <iframe src="https://www.tiktok.com/embed/v2/7557089282721205518" title="TikTok viral" allowfullscreen loading="lazy"></iframe>
+                <iframe src="https://www.tiktok.com/embed/v2/7557089282721205518" title="TikTok viral" allowfullscreen loading="lazy" sandbox="allow-scripts allow-same-origin allow-popups"></iframe>
                 <div class="video-label">
                     <h4>+200K views en TikTok</h4>
                     <span>TikTok &middot; Viral</span>
                 </div>
             </div>
             <div class="video-card reveal reveal-delay-3">
-                <iframe src="https://www.tiktok.com/embed/v2/7570412915468078391" title="American Business Forum" allowfullscreen loading="lazy"></iframe>
+                <iframe src="https://www.tiktok.com/embed/v2/7570412915468078391" title="American Business Forum" allowfullscreen loading="lazy" sandbox="allow-scripts allow-same-origin allow-popups"></iframe>
                 <div class="video-label">
                     <h4>American Business Forum</h4>
                     <span>TikTok &middot; 60K+ views</span>
@@ -649,7 +658,7 @@
     <section class="about reveal" id="sobre">
         <div class="about-grid">
             <div class="about-image" data-parallax="0.05">
-                <img src="images/nahuelbello.png" alt="Nahuel Bello">
+                <img src="images/nahuelbello.png" alt="Nahuel Bello" width="400" height="500">
             </div>
             <div class="about-content">
                 <p class="section-label">Quien soy</p>
@@ -671,8 +680,10 @@
         <p class="section-label">Unite</p>
         <h2>No te quedes afuera</h2>
         <p>Dejame tu email y vas a ser el primero en recibir la guia gratuita cuando salga, mas contenido exclusivo y novedades.</p>
-        <form class="email-form" id="emailForm">
-            <input type="email" name="email" id="emailInput" placeholder="Tu email" required>
+        <form class="email-form" id="emailForm" aria-label="Suscripcion por email">
+            <input type="email" name="email" id="emailInput" placeholder="Tu email" required aria-label="Tu direccion de email">
+            <!-- Honeypot anti-spam -->
+            <input type="text" name="website" id="honeypot" style="position:absolute;left:-9999px;opacity:0;height:0;width:0;" tabindex="-1" autocomplete="off">
             <button type="submit" id="emailBtn">Suscribirme</button>
         </form>
         <p class="newsletter-note">Gratis. Sin spam. Te podes dar de baja cuando quieras.</p>
@@ -682,7 +693,7 @@
     <footer>
         <div class="footer-content">
             <div class="footer-left">
-                <img src="images/ptweblogo.png" alt="PT">
+                <img src="images/ptweblogo.png" alt="PT" width="24" height="24">
                 <span>&copy; 2026 Proyecto Tanero LLC</span>
             </div>
             <div class="footer-socials">
@@ -702,13 +713,19 @@
         'use strict';
 
         // ── LOADER ──
-        window.addEventListener('load', () => {
-            setTimeout(() => document.getElementById('loader').classList.add('done'), 1800);
-        });
+        const loaderEl = document.getElementById('loader');
+        const skipLoader = sessionStorage.getItem('pt_visited');
+        if (skipLoader) {
+            loaderEl.classList.add('done');
+        } else {
+            sessionStorage.setItem('pt_visited', '1');
+            window.addEventListener('load', () => {
+                setTimeout(() => loaderEl.classList.add('done'), 1800);
+            });
+        }
 
         // ── NAV SCROLL ──
         const navbar = document.getElementById('navbar');
-        let lastScroll = 0;
         window.addEventListener('scroll', () => {
             navbar.classList.toggle('scrolled', window.scrollY > 60);
         }, { passive: true });
@@ -719,10 +736,12 @@
         menuToggle.addEventListener('click', () => {
             menuToggle.classList.toggle('active');
             navLinks.classList.toggle('open');
+            document.body.style.overflow = navLinks.classList.contains('open') ? 'hidden' : '';
         });
         navLinks.querySelectorAll('a').forEach(l => l.addEventListener('click', () => {
             menuToggle.classList.remove('active');
             navLinks.classList.remove('open');
+            document.body.style.overflow = '';
         }));
 
         // ── SMOOTH SCROLL (Lenis-style) ──
@@ -754,6 +773,7 @@
         }
 
         // ── HERO TEXT REVEAL ──
+        const heroDelay = skipLoader ? 100 : 1800;
         setTimeout(() => {
             document.querySelectorAll('.hero .line-inner').forEach((el, i) => {
                 setTimeout(() => el.classList.add('visible'), 300 + i * 200);
@@ -772,7 +792,7 @@
                     }, 800 + i * 200);
                 }
             });
-        }, 1800); // After loader
+        }, heroDelay);
 
         // ── SCROLL REVEAL ──
         const revealObs = new IntersectionObserver(entries => {
@@ -809,13 +829,17 @@
             const YT_API_KEY = 'AIzaSyDdXU1SKdJv0Ja7d0laPqAZPyKqzw3X7nA';
             const YT_CHANNEL_ID = 'UCTSTcIElpx0kbn0EqcoQ9HA';
             const subEl = document.getElementById('ytSubCount');
-            if (YT_API_KEY === 'TU_API_KEY_ACA') return; // Skip if no key set
             fetch(`https://www.googleapis.com/youtube/v3/channels?part=statistics&id=${YT_CHANNEL_ID}&key=${YT_API_KEY}`)
                 .then(r => r.json())
                 .then(data => {
                     if (data.items && data.items[0]) {
                         const subs = parseInt(data.items[0].statistics.subscriberCount);
                         subEl.dataset.target = subs;
+                        // Re-animate if already triggered with old value
+                        if (subEl.dataset.counted) {
+                            subEl.dataset.counted = '';
+                            animateCounter(subEl);
+                        }
                     }
                 })
                 .catch(() => {}); // Fallback to hardcoded 933
@@ -874,16 +898,23 @@
         const emailForm = document.getElementById('emailForm');
         emailForm.addEventListener('submit', function(e) {
             e.preventDefault();
+            // Honeypot check - bots fill hidden fields
+            if (document.getElementById('honeypot').value) return;
             const email = document.getElementById('emailInput').value;
             const btn = document.getElementById('emailBtn');
+            const originalText = btn.textContent;
             btn.textContent = 'Enviando...';
             btn.disabled = true;
             fetch('https://script.google.com/macros/s/AKfycbxeD7805EDXMOqj-rZuev8IkIQundiVr-3ng9JLBfA57j4w482I-CdC5E1ep8nd-Ypo/exec', {
                 method: 'POST',
                 body: JSON.stringify({ email: email }),
             })
-            .then(() => { window.location.href = 'gracias.html'; })
-            .catch(() => { window.location.href = 'gracias.html'; });
+            .then(r => { if (r.ok || r.type === 'opaque') window.location.href = 'gracias.html'; else throw new Error(); })
+            .catch(() => {
+                btn.textContent = 'Error, intenta de nuevo';
+                btn.disabled = false;
+                setTimeout(() => { btn.textContent = originalText; }, 3000);
+            });
         });
 
         // ── 3D TILT CARDS + SHINE ──
