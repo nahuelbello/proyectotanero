@@ -657,7 +657,7 @@
                 <p>Argentino en Miami creando Proyecto Tanero: un espacio donde hablo de todo lo que a mi me hubiese gustado saber antes de venir a Estados Unidos.</p>
                 <p>Credito, impuestos, negocios, la vida real del inmigrante. Sin vueltas, sin humo. Contenido que te sirve de verdad si sos latino en USA o estas pensando en venir.</p>
                 <div class="about-stats">
-                    <div class="stat"><h3><span class="counter" data-target="933">0</span></h3><p>Suscriptores YT</p></div>
+                    <div class="stat"><h3><span class="counter" id="ytSubCount" data-target="933">0</span></h3><p>Suscriptores YT</p></div>
                     <div class="stat"><h3><span class="counter" data-target="1600">0</span>+</h3><p>Seguidores TT</p></div>
                     <div class="stat"><h3><span class="counter" data-target="200">0</span>K</h3><p>Views top video</p></div>
                 </div>
@@ -803,6 +803,23 @@
             }
             requestAnimationFrame(update);
         }
+
+        // ── YOUTUBE LIVE SUB COUNT ──
+        (function() {
+            const YT_API_KEY = 'TU_API_KEY_ACA';
+            const YT_CHANNEL_ID = 'UCTSTcIElpx0kbn0EqcoQ9HA';
+            const subEl = document.getElementById('ytSubCount');
+            if (YT_API_KEY === 'TU_API_KEY_ACA') return; // Skip if no key set
+            fetch(`https://www.googleapis.com/youtube/v3/channels?part=statistics&id=${YT_CHANNEL_ID}&key=${YT_API_KEY}`)
+                .then(r => r.json())
+                .then(data => {
+                    if (data.items && data.items[0]) {
+                        const subs = parseInt(data.items[0].statistics.subscriberCount);
+                        subEl.dataset.target = subs;
+                    }
+                })
+                .catch(() => {}); // Fallback to hardcoded 933
+        })();
 
         // ── PARALLAX ──
         const parallaxEls = document.querySelectorAll('[data-parallax]');
