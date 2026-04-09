@@ -273,9 +273,10 @@
             font-weight: 700; letter-spacing: -0.03em; margin-bottom: 64px;
         }
         .platforms-grid {
-            display: grid; grid-template-columns: repeat(3, 1fr);
+            display: flex; flex-wrap: wrap; justify-content: center;
             gap: 16px; max-width: 800px; margin: 0 auto;
         }
+        .platforms-grid .platform-card { width: calc(33.333% - 12px); }
         .platform-card {
             display: flex; align-items: center; gap: 16px;
             padding: 24px 28px; background: var(--surface);
@@ -469,7 +470,8 @@
             .menu-toggle { display: block; }
             .hero h1 { font-size: clamp(2.8rem, 12vw, 5rem); }
             .marquee-item { font-size: 0.9rem; padding: 0 16px; }
-            .platforms-grid { grid-template-columns: 1fr; max-width: 400px; margin: 0 auto; }
+            .platforms-grid { max-width: 400px; margin: 0 auto; }
+            .platforms-grid .platform-card { width: 100%; }
             .about-grid { grid-template-columns: 1fr; gap: 40px; text-align: center; }
             .about-image { order: -1; display: flex; justify-content: center; }
             .about-image img { max-width: 260px; }
@@ -483,7 +485,7 @@
             .scroll-indicator { display: none; }
         }
         @media (min-width: 769px) and (max-width: 1024px) {
-            .platforms-grid { grid-template-columns: repeat(2, 1fr); }
+            .platforms-grid .platform-card { width: calc(50% - 8px); }
             .videos-grid { grid-template-columns: repeat(3, 1fr); gap: 16px; }
         }
     </style>
