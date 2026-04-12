@@ -3,15 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Guia Gratuita | Proyecto Tanero</title>
-    <meta name="description" content="La guia gratuita para latinos en USA. 12 secciones: ITIN, banco, credito, trabajo, impuestos, vivienda, salud, negocios y mas. Por Nahuel Bello.">
+    <title>Guia Gratuita para Latinos en USA | Proyecto Tanero</title>
+    <meta name="description" content="Guia gratuita de 12 secciones para latinos en USA: ITIN, cuenta de banco sin SSN, credito desde cero, trabajo legal, impuestos, vivienda, salud, LLC y mas. Por Nahuel Bello.">
+    <meta name="keywords" content="guia latinos USA, ITIN, credito sin SSN, cuenta banco sin papeles, derechos laborales inmigrantes, LLC inmigrante, proyecto tanero">
+    <meta name="author" content="Nahuel Bello">
+    <meta name="robots" content="index, follow">
     <link rel="icon" type="image/png" href="../images/favicon.png">
     <link rel="apple-touch-icon" href="../images/apple-icon.png">
     <meta property="og:title" content="Guia Gratuita para Latinos en USA | Proyecto Tanero">
-    <meta property="og:description" content="Todo lo que nadie te explica cuando llegas a Estados Unidos. 12 secciones. Gratis.">
-    <meta property="og:image" content="../images/nahuelbello.png">
+    <meta property="og:description" content="Todo lo que nadie te explica cuando llegas a Estados Unidos. ITIN, banco, credito, trabajo, impuestos y mas. 12 secciones. Gratis.">
+    <meta property="og:image" content="https://proyectotanero.com/images/nahuelbello.png">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://proyectotanero.com/guia">
+    <meta property="og:site_name" content="Proyecto Tanero">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Guia Gratuita para Latinos en USA | Proyecto Tanero">
+    <meta name="twitter:description" content="Todo lo que nadie te explica cuando llegas a Estados Unidos. 12 secciones. Gratis.">
+    <meta name="twitter:image" content="https://proyectotanero.com/images/nahuelbello.png">
     <link rel="canonical" href="https://proyectotanero.com/guia">
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-NEPLE1EMG2"></script>
     <script>
@@ -333,12 +341,13 @@
         </a>
     </nav>
 
+    <main>
     <!-- Hero -->
-    <section class="hero">
-        <div class="hero-glow"></div>
+    <header class="hero">
+        <div class="hero-glow" aria-hidden="true"></div>
 
-        <div class="hero-badge">
-            <span class="dot"></span>
+        <div class="hero-badge" aria-label="Guia gratuita de 12 secciones">
+            <span class="dot" aria-hidden="true"></span>
             Gratis &middot; 12 secciones
         </div>
 
@@ -355,33 +364,33 @@
             <p class="form-note">Gratis. Sin spam. Te podes dar de baja cuando quieras.</p>
         </div>
 
-        <div class="scroll-hint">
+        <div class="scroll-hint" aria-hidden="true">
             <span>Que hay adentro</span>
             <div class="line"></div>
         </div>
-    </section>
+    </header>
 
     <!-- Story -->
-    <section class="story">
+    <article class="story">
         <div class="story-container">
             <div class="story-block">
                 <p class="story-text">Cuando llegue a USA nadie me explico como funciona el sistema. <span class="teal">Me tuve que comer cada error solo.</span></p>
             </div>
             <div class="story-block">
                 <p class="story-text">No sabia como abrir una cuenta de banco. No sabia que podia construir credito sin Social Security.</p>
-                <p class="story-sub">No sabia que tenia derechos laborales aunque no tuviera papeles.</p>
+                <p class="story-text">No sabia que tenia derechos laborales aunque no tuviera papeles.</p>
             </div>
             <div class="story-block">
-                <p class="story-text">Despues de un ano investigando, probando, y equivocandome...</p>
+                <p class="story-text">Despues de un año investigando, probando, y equivocandome...</p>
                 <p class="story-text"><span class="teal">Arme todo en una guia. 12 secciones. Gratis.</span></p>
             </div>
         </div>
-    </section>
+    </article>
 
     <!-- What's Inside -->
-    <section class="contents">
+    <section class="contents" aria-labelledby="contents-heading">
         <div class="contents-container">
-            <h2>Que hay adentro</h2>
+            <h2 id="contents-heading">Que hay adentro</h2>
             <ul class="contents-list">
                 <li class="contents-item"><span class="item-num">01</span><span class="item-title">El ITIN &mdash; tu entrada al sistema</span></li>
                 <li class="contents-item"><span class="item-num">02</span><span class="item-title">Cuenta de banco sin SSN</span></li>
@@ -400,9 +409,9 @@
     </section>
 
     <!-- CTA Bottom -->
-    <section class="cta-bottom">
-        <div class="cta-glow"></div>
-        <h2>Deja tu email y te la mando</h2>
+    <section class="cta-bottom" aria-labelledby="cta-heading">
+        <div class="cta-glow" aria-hidden="true"></div>
+        <h2 id="cta-heading">Deja tu email y te la mando</h2>
         <p class="cta-sub">No tenes que pasar por lo mismo que yo. Esta guia es lo que me hubiese cambiado todo al llegar.</p>
         <div class="hero-form">
             <form class="email-form" id="emailForm2" aria-label="Descargar guia gratuita">
@@ -413,6 +422,7 @@
             <p class="form-note">Gratis. Sin spam. Te podes dar de baja cuando quieras.</p>
         </div>
     </section>
+    </main>
 
     <!-- Footer -->
     <footer>
