@@ -378,6 +378,61 @@
             font-size: 0.75rem; color: var(--text-muted);
         }
 
+        /* ── GUIDE PROMO ── */
+        .guide-promo {
+            padding: 100px 24px; position: relative; overflow: hidden;
+        }
+        .guide-promo-glow {
+            position: absolute; top: -20%; left: 50%; transform: translateX(-50%);
+            width: 600px; height: 600px;
+            background: radial-gradient(circle, rgba(45, 212, 168, 0.06) 0%, transparent 65%);
+            pointer-events: none;
+        }
+        .guide-promo-inner {
+            max-width: 800px; margin: 0 auto;
+            border: 1px solid var(--border); border-radius: var(--radius-lg);
+            background: var(--surface); padding: 60px 48px;
+            display: flex; flex-direction: column; align-items: center; text-align: center;
+            position: relative;
+        }
+        .guide-promo-badge {
+            display: inline-flex; align-items: center; gap: 8px;
+            padding: 6px 16px; border-radius: 100px;
+            border: 1px solid rgba(45, 212, 168, 0.2);
+            background: rgba(45, 212, 168, 0.05);
+            font-size: 0.75rem; color: #2dd4a8;
+            margin-bottom: 24px; font-weight: 600;
+            letter-spacing: 0.03em; text-transform: uppercase;
+        }
+        .guide-promo h2 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: clamp(1.6rem, 4vw, 2.4rem);
+            font-weight: 800; letter-spacing: -0.03em;
+            line-height: 1.15; margin-bottom: 16px;
+        }
+        .guide-promo h2 .teal { color: #2dd4a8; }
+        .guide-promo .guide-desc {
+            color: var(--text-secondary); font-size: 1rem;
+            max-width: 500px; line-height: 1.7; margin-bottom: 32px;
+        }
+        .guide-promo .guide-link {
+            display: inline-flex; align-items: center; gap: 10px;
+            padding: 16px 36px; background: #2dd4a8; color: var(--bg);
+            border-radius: 100px; font-weight: 700; font-size: 0.9rem;
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .guide-promo .guide-link:hover {
+            transform: translateY(-2px) scale(1.03);
+            box-shadow: 0 0 40px rgba(45, 212, 168, 0.2), 0 10px 30px rgba(0,0,0,0.3);
+        }
+        .guide-promo .guide-link svg { transition: transform 0.3s; }
+        .guide-promo .guide-link:hover svg { transform: translateX(3px); }
+
+        @media (max-width: 768px) {
+            .guide-promo { padding: 60px 16px; }
+            .guide-promo-inner { padding: 40px 24px; }
+        }
+
         /* ── NEWSLETTER ── */
         .newsletter {
             padding: 140px 24px; text-align: center; position: relative; overflow: hidden;
@@ -671,6 +726,20 @@
                     <div class="stat"><h3><span class="counter" data-target="200">0</span>K</h3><p>Views top video</p></div>
                 </div>
             </div>
+        </div>
+    </section>
+
+    <!-- Guide Promo -->
+    <section class="guide-promo reveal">
+        <div class="guide-promo-glow"></div>
+        <div class="guide-promo-inner">
+            <span class="guide-promo-badge">Gratis &middot; 12 secciones</span>
+            <h2>Todo lo que nadie te explica<br>cuando llegas a USA.<br><span class="teal">Lo arme en una guia.</span></h2>
+            <p class="guide-desc">ITIN, banco, credito, trabajo, impuestos, vivienda, salud, negocios y mas. Lo que a mi me hubiese ahorrado meses de errores.</p>
+            <a href="/guia" class="guide-link">
+                Quiero la guia
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
         </div>
     </section>
 

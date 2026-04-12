@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guia Gratuita | Proyecto Tanero</title>
+    <meta name="description" content="La guia gratuita para latinos en USA. 12 secciones: ITIN, banco, credito, trabajo, impuestos, vivienda, salud, negocios y mas. Por Nahuel Bello.">
+    <link rel="icon" type="image/png" href="../images/favicon.png">
+    <link rel="apple-touch-icon" href="../images/apple-icon.png">
+    <meta property="og:title" content="Guia Gratuita para Latinos en USA | Proyecto Tanero">
+    <meta property="og:description" content="Todo lo que nadie te explica cuando llegas a Estados Unidos. 12 secciones. Gratis.">
+    <meta property="og:image" content="../images/nahuelbello.png">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://proyectotanero.com/guia">
+    <link rel="canonical" href="https://proyectotanero.com/guia">
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-NEPLE1EMG2"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-NEPLE1EMG2');
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+        :root {
+            --bg: #050505;
+            --surface: #0a0a0a;
+            --surface-2: #111111;
+            --border: #1a1a1a;
+            --border-hover: #2a2a2a;
+            --text-primary: #f5f5f5;
+            --text-secondary: #888888;
+            --text-muted: #555555;
+            --accent: #e8ff47;
+            --accent-dim: #e8ff4715;
+            --accent-mid: #e8ff4730;
+            --teal: #2dd4a8;
+            --gradient-1: linear-gradient(135deg, #e8ff47, #a8e600);
+        }
+        html { -webkit-font-smoothing: antialiased; scroll-behavior: smooth; }
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--bg);
+            color: var(--text-primary);
+            min-height: 100vh; min-height: 100dvh;
+            overflow-x: hidden;
+        }
+        body::after {
+            content: '';
+            position: fixed; inset: 0;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.025'/%3E%3C/svg%3E");
+            pointer-events: none; z-index: 9999;
+        }
+        ::selection { background: var(--accent); color: var(--bg); }
+        a { color: inherit; text-decoration: none; }
+
+        /* ── NAV ── */
+        .nav {
+            position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+            display: flex; align-items: center; justify-content: space-between;
+            padding: 20px 40px;
+            background: rgba(5,5,5,0.6); backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px);
+            border-bottom: 1px solid var(--border);
+        }
+        .nav-logo {
+            display: flex; align-items: center; gap: 10px;
+            font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 0.95rem;
+            letter-spacing: -0.02em;
+        }
+        .nav-logo img { width: 28px; height: 28px; }
+        .nav-back {
+            display: flex; align-items: center; gap: 8px;
+            color: var(--text-secondary); font-size: 0.85rem; transition: color 0.3s;
+        }
+        .nav-back:hover { color: var(--text-primary); }
+
+        /* ── HERO ── */
+        .hero {
+            min-height: 100vh; min-height: 100dvh;
+            display: flex; flex-direction: column;
+            align-items: center; justify-content: center;
+            text-align: center; padding: 120px 24px 80px;
+            position: relative; overflow: hidden;
+        }
+        .hero-glow {
+            position: absolute; top: -15%; left: 50%; transform: translateX(-50%);
+            width: 800px; height: 800px;
+            background: radial-gradient(circle, rgba(45, 212, 168, 0.08) 0%, transparent 65%);
+            pointer-events: none;
+        }
+
+        .hero-badge {
+            display: inline-flex; align-items: center; gap: 8px;
+            padding: 8px 20px; border-radius: 100px;
+            border: 1px solid var(--border);
+            background: var(--surface);
+            font-size: 0.8rem; color: var(--text-secondary);
+            margin-bottom: 40px; position: relative;
+            opacity: 0; animation: fadeUp 0.8s 0.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+        .hero-badge .dot {
+            width: 6px; height: 6px; border-radius: 50%;
+            background: var(--teal);
+            animation: pulse 2s infinite;
+        }
+
+        .hero h1 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: clamp(2.2rem, 6vw, 4rem);
+            font-weight: 800; letter-spacing: -0.04em;
+            line-height: 1.1; margin-bottom: 24px;
+            max-width: 700px; position: relative;
+            opacity: 0; animation: fadeUp 0.8s 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+        .hero h1 .teal { color: var(--teal); }
+
+        .hero-sub {
+            color: var(--text-secondary); font-size: 1.15rem;
+            max-width: 520px; line-height: 1.7;
+            margin-bottom: 48px; position: relative;
+            opacity: 0; animation: fadeUp 0.8s 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        .hero-form {
+            opacity: 0; animation: fadeUp 0.8s 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+            position: relative; width: 100%; max-width: 500px;
+        }
+
+        .email-form {
+            display: flex; gap: 12px; width: 100%;
+        }
+        .email-form input[type="email"] {
+            flex: 1; padding: 18px 24px; background: var(--surface);
+            border: 1px solid var(--border); border-radius: 100px;
+            color: var(--text-primary); font-size: 0.95rem; font-family: inherit;
+            outline: none; transition: border-color 0.3s, box-shadow 0.3s;
+        }
+        .email-form input[type="email"]::placeholder { color: var(--text-muted); }
+        .email-form input[type="email"]:focus { border-color: var(--teal); box-shadow: 0 0 20px rgba(45, 212, 168, 0.15); }
+        .email-form button {
+            padding: 18px 32px; background: var(--teal); color: var(--bg);
+            border: none; border-radius: 100px; font-weight: 700;
+            font-size: 0.9rem; cursor: pointer; font-family: inherit;
+            transition: all 0.3s; white-space: nowrap;
+        }
+        .email-form button:hover { transform: scale(1.05); box-shadow: 0 0 30px rgba(45, 212, 168, 0.25); }
+
+        .form-note {
+            font-size: 0.75rem; color: var(--text-muted); margin-top: 16px;
+            position: relative;
+        }
+
+        .scroll-hint {
+            position: absolute; bottom: 32px; left: 50%; transform: translateX(-50%);
+            display: flex; flex-direction: column; align-items: center; gap: 8px;
+            color: var(--text-muted); font-size: 0.7rem; letter-spacing: 0.1em; text-transform: uppercase;
+            opacity: 0; animation: fadeUp 0.8s 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+        .scroll-hint .line {
+            width: 1px; height: 40px; background: linear-gradient(to bottom, var(--text-muted), transparent);
+            animation: scrollLine 2s infinite;
+        }
+
+        /* ── STORY SECTION ── */
+        .story {
+            padding: 100px 24px; position: relative;
+        }
+        .story-container {
+            max-width: 680px; margin: 0 auto;
+        }
+        .story-block {
+            margin-bottom: 64px;
+            opacity: 0; transform: translateY(40px);
+            transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .story-block.visible {
+            opacity: 1; transform: translateY(0);
+        }
+        .story-text {
+            font-size: clamp(1.4rem, 3.5vw, 2rem);
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 700; line-height: 1.4;
+            letter-spacing: -0.02em;
+        }
+        .story-text .teal { color: var(--teal); }
+        .story-sub {
+            font-size: 1.05rem; color: var(--text-secondary);
+            line-height: 1.7; margin-top: 16px;
+        }
+
+        /* ── WHAT'S INSIDE ── */
+        .contents {
+            padding: 80px 24px 100px; position: relative;
+        }
+        .contents-container {
+            max-width: 680px; margin: 0 auto;
+        }
+        .contents h2 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: clamp(1.8rem, 4vw, 2.8rem);
+            font-weight: 800; letter-spacing: -0.03em;
+            color: var(--teal); margin-bottom: 48px;
+            opacity: 0; transform: translateY(40px);
+            transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .contents h2.visible { opacity: 1; transform: translateY(0); }
+
+        .contents-list {
+            list-style: none; display: flex; flex-direction: column; gap: 0;
+        }
+        .contents-item {
+            display: flex; align-items: baseline; gap: 20px;
+            padding: 20px 0;
+            border-bottom: 1px solid var(--border);
+            opacity: 0; transform: translateY(20px);
+            transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .contents-item.visible { opacity: 1; transform: translateY(0); }
+        .contents-item:first-child { border-top: 1px solid var(--border); }
+        .item-num {
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 700; font-size: 0.85rem;
+            color: var(--teal); min-width: 32px;
+        }
+        .item-title {
+            font-size: 1.1rem; font-weight: 500;
+        }
+
+        /* ── CTA BOTTOM ── */
+        .cta-bottom {
+            padding: 100px 24px 120px;
+            text-align: center; position: relative; overflow: hidden;
+        }
+        .cta-glow {
+            position: absolute; bottom: -30%; left: 50%; transform: translateX(-50%);
+            width: 700px; height: 700px;
+            background: radial-gradient(circle, rgba(45, 212, 168, 0.08) 0%, transparent 65%);
+            pointer-events: none;
+        }
+        .cta-bottom h2 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: clamp(1.8rem, 4.5vw, 3rem);
+            font-weight: 800; letter-spacing: -0.03em;
+            margin-bottom: 16px; position: relative;
+            opacity: 0; transform: translateY(40px);
+            transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .cta-bottom h2.visible { opacity: 1; transform: translateY(0); }
+        .cta-bottom .cta-sub {
+            color: var(--text-secondary); font-size: 1.05rem;
+            max-width: 460px; margin: 0 auto 40px; position: relative;
+            line-height: 1.7;
+            opacity: 0; transform: translateY(40px);
+            transition: all 0.8s 0.1s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .cta-bottom .cta-sub.visible { opacity: 1; transform: translateY(0); }
+        .cta-bottom .hero-form {
+            margin: 0 auto;
+            opacity: 0; transform: translateY(40px);
+            transition: all 0.8s 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+            animation: none;
+        }
+        .cta-bottom .hero-form.visible { opacity: 1; transform: translateY(0); }
+
+        /* ── FOOTER ── */
+        footer {
+            padding: 32px 40px;
+            border-top: 1px solid var(--border);
+            display: flex; align-items: center; justify-content: space-between;
+            font-size: 0.8rem; color: var(--text-muted);
+        }
+        .footer-left {
+            display: flex; align-items: center; gap: 10px;
+        }
+        .footer-left img { width: 20px; height: 20px; }
+        .footer-socials {
+            display: flex; gap: 16px;
+        }
+        .footer-socials a { transition: opacity 0.3s; }
+        .footer-socials a:hover { opacity: 0.7; }
+        .footer-socials img {
+            width: 16px; height: 16px;
+            filter: brightness(0) invert(1); opacity: 0.4;
+        }
+
+        /* ── ANIMATIONS ── */
+        @keyframes fadeUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.4; } }
+        @keyframes scrollLine { 0% { opacity: 0; transform: scaleY(0); transform-origin: top; } 50% { opacity: 1; transform: scaleY(1); } 100% { opacity: 0; transform: scaleY(0); transform-origin: bottom; } }
+
+        /* ── RESPONSIVE ── */
+        @media (max-width: 768px) {
+            .nav { padding: 16px 20px; }
+            .nav-back span { display: none; }
+            .hero { padding: 100px 20px 60px; min-height: auto; padding-bottom: 80px; }
+            .hero h1 { font-size: clamp(1.8rem, 8vw, 2.8rem); }
+            .hero-sub { font-size: 1rem; margin-bottom: 36px; }
+            .hero-badge { margin-bottom: 28px; }
+            .email-form { flex-direction: column; }
+            .email-form input[type="email"] { padding: 16px 20px; font-size: 16px; }
+            .email-form button { width: 100%; padding: 16px 24px; }
+            .scroll-hint { display: none; }
+            .story { padding: 48px 20px; }
+            .story-block { margin-bottom: 40px; }
+            .story-text { font-size: clamp(1.2rem, 5vw, 1.6rem); }
+            .story-sub { font-size: 0.95rem; }
+            .contents { padding: 32px 20px 48px; }
+            .contents h2 { margin-bottom: 32px; }
+            .contents-item { padding: 16px 0; gap: 16px; }
+            .item-title { font-size: 0.95rem; }
+            .item-num { font-size: 0.8rem; min-width: 28px; }
+            .cta-bottom { padding: 60px 20px 48px; }
+            .cta-bottom h2 { font-size: clamp(1.5rem, 6vw, 2.2rem); }
+            .cta-bottom .cta-sub { font-size: 0.95rem; margin-bottom: 32px; }
+            footer { flex-direction: column; gap: 16px; text-align: center; padding: 24px 20px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Nav -->
+    <nav class="nav">
+        <a href="/" class="nav-logo">
+            <img src="../images/ptweblogo.png" alt="PT">
+            Proyecto Tanero
+        </a>
+        <a href="/" class="nav-back">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+            Volver al inicio
+        </a>
+    </nav>
+
+    <!-- Hero -->
+    <section class="hero">
+        <div class="hero-glow"></div>
+
+        <div class="hero-badge">
+            <span class="dot"></span>
+            Gratis &middot; 12 secciones
+        </div>
+
+        <h1>Nadie me explico como funciona el sistema.<br><span class="teal">Asi que arme esta guia.</span></h1>
+
+        <p class="hero-sub">Todo lo que un latino necesita saber al llegar a Estados Unidos. Sin vueltas, sin humo. Lo que a mi me hubiese ahorrado meses de errores.</p>
+
+        <div class="hero-form">
+            <form class="email-form" id="emailForm" aria-label="Descargar guia gratuita">
+                <input type="email" name="email" id="emailInput" placeholder="Tu email" required aria-label="Tu direccion de email">
+                <input type="text" name="website" id="honeypot" style="position:absolute;left:-9999px;opacity:0;height:0;width:0;" tabindex="-1" autocomplete="off">
+                <button type="submit" id="emailBtn">Quiero la guia</button>
+            </form>
+            <p class="form-note">Gratis. Sin spam. Te podes dar de baja cuando quieras.</p>
+        </div>
+
+        <div class="scroll-hint">
+            <span>Que hay adentro</span>
+            <div class="line"></div>
+        </div>
+    </section>
+
+    <!-- Story -->
+    <section class="story">
+        <div class="story-container">
+            <div class="story-block">
+                <p class="story-text">Cuando llegue a USA nadie me explico como funciona el sistema. <span class="teal">Me tuve que comer cada error solo.</span></p>
+            </div>
+            <div class="story-block">
+                <p class="story-text">No sabia como abrir una cuenta de banco. No sabia que podia construir credito sin Social Security.</p>
+                <p class="story-sub">No sabia que tenia derechos laborales aunque no tuviera papeles.</p>
+            </div>
+            <div class="story-block">
+                <p class="story-text">Despues de un ano investigando, probando, y equivocandome...</p>
+                <p class="story-text"><span class="teal">Arme todo en una guia. 12 secciones. Gratis.</span></p>
+            </div>
+        </div>
+    </section>
+
+    <!-- What's Inside -->
+    <section class="contents">
+        <div class="contents-container">
+            <h2>Que hay adentro</h2>
+            <ul class="contents-list">
+                <li class="contents-item"><span class="item-num">01</span><span class="item-title">El ITIN &mdash; tu entrada al sistema</span></li>
+                <li class="contents-item"><span class="item-num">02</span><span class="item-title">Cuenta de banco sin SSN</span></li>
+                <li class="contents-item"><span class="item-num">03</span><span class="item-title">Credito desde cero</span></li>
+                <li class="contents-item"><span class="item-num">04</span><span class="item-title">Trabaja legal: opciones reales</span></li>
+                <li class="contents-item"><span class="item-num">05</span><span class="item-title">Tus derechos laborales</span></li>
+                <li class="contents-item"><span class="item-num">06</span><span class="item-title">Impuestos: por que te conviene</span></li>
+                <li class="contents-item"><span class="item-num">07</span><span class="item-title">Vivienda sin historial</span></li>
+                <li class="contents-item"><span class="item-num">08</span><span class="item-title">Salud sin seguro</span></li>
+                <li class="contents-item"><span class="item-num">09</span><span class="item-title">LLC: arma tu negocio</span></li>
+                <li class="contents-item"><span class="item-num">10</span><span class="item-title">Licencia de conducir</span></li>
+                <li class="contents-item"><span class="item-num">11</span><span class="item-title">Educacion y becas</span></li>
+                <li class="contents-item"><span class="item-num">12</span><span class="item-title">Recursos de emergencia</span></li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- CTA Bottom -->
+    <section class="cta-bottom">
+        <div class="cta-glow"></div>
+        <h2>Deja tu email y te la mando</h2>
+        <p class="cta-sub">No tenes que pasar por lo mismo que yo. Esta guia es lo que me hubiese cambiado todo al llegar.</p>
+        <div class="hero-form">
+            <form class="email-form" id="emailForm2" aria-label="Descargar guia gratuita">
+                <input type="email" name="email" id="emailInput2" placeholder="Tu email" required aria-label="Tu direccion de email">
+                <input type="text" name="website" id="honeypot2" style="position:absolute;left:-9999px;opacity:0;height:0;width:0;" tabindex="-1" autocomplete="off">
+                <button type="submit" id="emailBtn2">Quiero la guia</button>
+            </form>
+            <p class="form-note">Gratis. Sin spam. Te podes dar de baja cuando quieras.</p>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-left">
+            <img src="../images/ptweblogo.png" alt="PT">
+            <span>&copy; 2026 Proyecto Tanero LLC</span>
+        </div>
+        <div class="footer-socials">
+            <a href="https://www.tiktok.com/@proyectotanero" target="_blank" rel="noopener" aria-label="TikTok"><img src="../images/tiktok-icon.png" alt=""></a>
+            <a href="https://www.instagram.com/proyectotanero/" target="_blank" rel="noopener" aria-label="Instagram"><img src="../images/instagram-icon.png" alt=""></a>
+            <a href="https://youtube.com/@proyectotanero" target="_blank" rel="noopener" aria-label="YouTube"><img src="../images/youtube-icon.png" alt=""></a>
+        </div>
+    </footer>
+
+    <script>
+    (function() {
+        'use strict';
+
+        // ── SCROLL REVEAL ──
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+
+        document.querySelectorAll('.story-block, .contents h2, .contents-item, .cta-bottom h2, .cta-bottom .cta-sub, .cta-bottom .hero-form').forEach(el => {
+            observer.observe(el);
+        });
+
+        // ── STAGGER CONTENTS ITEMS ──
+        const itemObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const items = document.querySelectorAll('.contents-item');
+                    items.forEach((item, i) => {
+                        setTimeout(() => item.classList.add('visible'), i * 80);
+                    });
+                    itemObserver.disconnect();
+                }
+            });
+        }, { threshold: 0.1 });
+        const firstItem = document.querySelector('.contents-item');
+        if (firstItem) itemObserver.observe(firstItem);
+
+        // ── EMAIL FORMS → GOOGLE SHEETS ──
+        function handleForm(formId, inputId, honeypotId, btnId) {
+            const form = document.getElementById(formId);
+            form.addEventListener('submit', function(e) {
+                e.preventDefault();
+                if (document.getElementById(honeypotId).value) return;
+                const email = document.getElementById(inputId).value;
+                const btn = document.getElementById(btnId);
+                const originalText = btn.textContent;
+                btn.textContent = 'Enviando...';
+                btn.disabled = true;
+                fetch('https://script.google.com/macros/s/AKfycbxeD7805EDXMOqj-rZuev8IkIQundiVr-3ng9JLBfA57j4w482I-CdC5E1ep8nd-Ypo/exec', {
+                    method: 'POST',
+                    body: JSON.stringify({ email: email }),
+                })
+                .then(r => { if (r.ok || r.type === 'opaque') window.location.href = '../gracias.html'; else throw new Error(); })
+                .catch(() => {
+                    btn.textContent = 'Error, intenta de nuevo';
+                    btn.disabled = false;
+                    setTimeout(() => { btn.textContent = originalText; }, 3000);
+                });
+            });
+        }
+
+        handleForm('emailForm', 'emailInput', 'honeypot', 'emailBtn');
+        handleForm('emailForm2', 'emailInput2', 'honeypot2', 'emailBtn2');
+
+    })();
+    </script>
+</body>
+</html>
